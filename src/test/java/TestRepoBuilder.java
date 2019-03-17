@@ -1,19 +1,16 @@
-import main.repos.ChromeDriverRepo;
+import main.repos.DriverRepo;
 import org.testng.annotations.Test;
 
 public class TestRepoBuilder {
     @Test
     public void buildChrome() {
-        ChromeDriverRepo chromeDriverRepo = ChromeDriverRepo.builder()
-                .driverLink("http://www.link.pl")
-                .driverName("CHROME")
-                .driverVersion("23.23")
-                .build();
+        DriverRepo repo = new DriverRepo();
+        repo.setDriverLink("http://www.link.pl");
+        repo.setDriverName("CHROME");
 
-        assert (chromeDriverRepo != null);
-        assert(chromeDriverRepo.getDriverLink().equalsIgnoreCase(("http://www.link.pl")));
-        assert(chromeDriverRepo.getDriverName().equalsIgnoreCase("CHROME"));
-        assert(chromeDriverRepo.getDriverVersion().equalsIgnoreCase("23.23"));
+        assert (repo != null);
+        assert(repo.getDriverLink().equalsIgnoreCase(("http://www.link.pl")));
+        assert(repo.getDriverName().equalsIgnoreCase("CHROME"));
 
     }
 }
