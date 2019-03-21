@@ -35,14 +35,14 @@ public class InitSource {
         File file=filesInFolder.stream().findFirst().get();
         DriverRepo repo= (DriverRepo) TransformXmlToObject.transform(DriverRepo.class,file);
         String link=repo.getDriverLink();
-        FileDownloader fileDownloader = new FileDownloader(link,new File("/home/dawid/IdeaProjects/WebDriverUpdater/download"+"/tmp.xml").toPath());
+        File temp=File.createTempFile("chromeRepos","xml");
+        temp.deleteOnExit();
+        FileDownloader fileDownloader = new FileDownloader(link,temp.toPath());
         File downloaded=fileDownloader.download();
         ChromeListBucketResult chrome= (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class,downloaded);
         chrome.setContents(chrome.getContents().stream().filter(p->p.getKey().endsWith(".zip")).collect(Collectors.toList()));
         List<ChromeLinkToDrivers> linkToDrivers = new ArrayList<>();
-        chrome.getContents().forEach(p->{
-            linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(),link));
-        });
+        chrome.getContents().forEach(p-> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(),link)));
 
         return linkToDrivers;
 
