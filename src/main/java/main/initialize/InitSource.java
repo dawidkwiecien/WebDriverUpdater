@@ -37,7 +37,7 @@ public class InitSource {
         String link=repo.getDriverLink();
         File temp=File.createTempFile("chromeRepos","xml");
         temp.deleteOnExit();
-        FileDownloader fileDownloader = new FileDownloader(link,temp.toPath());
+        FileDownloader fileDownloader = new FileDownloader(link,temp);
         File downloaded=fileDownloader.download();
         ChromeListBucketResult chrome= (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class,downloaded);
         chrome.setContents(chrome.getContents().stream().filter(p->p.getKey().endsWith(".zip")).collect(Collectors.toList()));

@@ -10,7 +10,7 @@ public class TestFileDownload {
     @Test
     public void testDownload() throws IOException {
         String url="https://chromedriver.storage.googleapis.com/73.0.3683.68/chromedriver_win32.zip";
-        Path path= FileSystems.getDefault().getPath("/home/dawid/IdeaProjects/WebDriverUpdater/download");
+        File path= new File("/home/dawid/IdeaProjects/WebDriverUpdater/download");
         FileDownloader fileDownloader = new FileDownloader(url,path);
         File file=fileDownloader.download();
         assert(file != null);

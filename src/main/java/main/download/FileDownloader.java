@@ -7,10 +7,10 @@ import java.nio.file.Path;
 
 public class FileDownloader {
     private final String urlToDownload;
-    private final Path pathToSaveFile;
+    private final File pathToSaveFile;
     private File result;
 
-    public FileDownloader(String urlToDownload, Path pathToSaveFile) {
+    public FileDownloader(String urlToDownload, File pathToSaveFile) {
         this.urlToDownload = urlToDownload;
         this.pathToSaveFile = pathToSaveFile;
     }

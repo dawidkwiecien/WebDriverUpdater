@@ -4,7 +4,6 @@ import main.initialize.InitSource;
 import main.utils.BrowserTypes;
 import main.utils.ChromeLinkToDrivers;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mojo( name = "driverVersions")
-public class GreetingMojo extends AbstractMojo
+public class DriverVersion extends AbstractMojo
 {
 
     @Parameter( property = "driverVersions.browser" )
@@ -29,6 +28,5 @@ public class GreetingMojo extends AbstractMojo
             getLog().error(e);
         }
         links.forEach(p-> getLog().info(p.toString()));
-        //getLog().info( this.browser.name() );
     }
 }
