@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InitSource {
-    String path;
-    String driverName;
+    private final String path;
+    private final String driverName;
 
     public InitSource(String path,String driverName) {
         this.path = path;
@@ -47,7 +47,7 @@ public class InitSource {
         return linkToDrivers;
 
     }
-    public static String removeExtension(String filename) {
+    private static String removeExtension(String filename) {
         if (filename == null) {
             return null;
         }
@@ -61,7 +61,7 @@ public class InitSource {
         }
     }
 
-    public static int indexOfExtension(String filename) {
+    private static int indexOfExtension(String filename) {
 
         if (filename == null) {
             return -1;

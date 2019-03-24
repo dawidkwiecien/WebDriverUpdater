@@ -8,7 +8,6 @@ public class TestRepoBuilder {
         repo.setDriverLink("http://www.link.pl");
         repo.setDriverName("CHROME");
 
-        assert (repo != null);
         assert(repo.getDriverLink().equalsIgnoreCase(("http://www.link.pl")));
         assert(repo.getDriverName().equalsIgnoreCase("CHROME"));
 

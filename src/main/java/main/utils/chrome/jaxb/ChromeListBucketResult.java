@@ -13,9 +13,9 @@ import static javax.xml.bind.annotation.XmlAccessType.FIELD;
 @XmlAccessorType(value = FIELD)
 @Data
 public class ChromeListBucketResult {
-    @XmlElement(name = "Name",nillable = false,namespace = "http://doc.s3.amazonaws.com/2006-03-01")
+    @XmlElement(name = "Name", namespace = "http://doc.s3.amazonaws.com/2006-03-01")
     String name;
-    @XmlElement(name = "Contents",nillable = false,namespace = "http://doc.s3.amazonaws.com/2006-03-01")
+    @XmlElement(name = "Contents", namespace = "http://doc.s3.amazonaws.com/2006-03-01")
     List<Contents> contents= new ArrayList<>();
 
     @Data

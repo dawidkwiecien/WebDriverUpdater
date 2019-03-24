@@ -1,20 +1,19 @@
 package main.unpack;
 
-import javax.imageio.IIOException;
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class UnzipFile {
-    File fileToUnzip;
-    File pathToUnzip;
+    private final File fileToUnzip;
+    private final File pathToUnzip;
 
     public UnzipFile(File fileToUnzip, File pathToUnzip) {
         this.fileToUnzip = fileToUnzip;
         this.pathToUnzip = pathToUnzip;
     }
 
-    public void unzip() throws FileNotFoundException, IOException {
+    public void unzip() throws IOException {
         byte[] buffer = new byte[1024];
         ZipInputStream zis = new ZipInputStream(new FileInputStream(fileToUnzip));
         ZipEntry zipEntry = zis.getNextEntry();
@@ -34,7 +33,7 @@ public class UnzipFile {
 
 
 
-    public static File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {
+    private static File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {
         File destFile = new File(destinationDir, zipEntry.getName());
 
         String destDirPath = destinationDir.getCanonicalPath();

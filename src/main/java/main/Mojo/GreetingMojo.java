@@ -20,20 +20,15 @@ public class GreetingMojo extends AbstractMojo
     @Parameter( property = "driverVersions.browser" )
     private BrowserTypes browser;
 
-    public void execute() throws MojoExecutionException
-    {
+    public void execute() {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",this.browser.name());
         List<ChromeLinkToDrivers> links = new ArrayList<>();
         try {
             links=source.getRepo();
-        } catch (IOException e) {
-            getLog().error(e);
-        } catch (JAXBException e) {
+        } catch (IOException | JAXBException e) {
             getLog().error(e);
         }
-        links.forEach(p->{
-            getLog().info(p.toString());
-        });
+        links.forEach(p-> getLog().info(p.toString()));
         //getLog().info( this.browser.name() );
     }
 }
