@@ -14,7 +14,6 @@ public class TestRepos {
     public void getRepo() throws IOException, JAXBException {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls","CHROME");
         List<ChromeLinkToDrivers> links=source.getRepo();
-        System.out.println();
     }
 
 }

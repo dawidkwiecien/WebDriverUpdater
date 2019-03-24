@@ -10,6 +10,13 @@
     <packaging>maven-plugin</packaging>
     <name>Sample Parameter-less Maven Plugin</name>
 
+    <properties>
+        <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
+        <java.version>8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -17,14 +24,14 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>${maven-plugin-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-descriptor</id>
@@ -35,9 +42,9 @@
 
 
             <plugin>
-                <groupId>WebDriverUpdater</groupId>
-                <artifactId>WebDriverUpdater</artifactId>
-                <version>1.0</version>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
                 <configuration>
                     <browser>CHROME</browser>
                 </configuration>
@@ -50,7 +57,7 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.6.0</version>
+            <version>${maven-plugin-plugin.version}</version>
         </dependency>
 
 
@@ -58,7 +65,7 @@
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
-            <version>3.6.0</version>
+            <version>${maven-plugin-plugin.version}</version>
             <scope>provided</scope>
         </dependency>
 
