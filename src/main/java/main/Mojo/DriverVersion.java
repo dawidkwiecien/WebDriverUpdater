@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mojo( name = "driverVersions")
+@Mojo( name = "driverVersions", requiresOnline = true)
 public class DriverVersion extends AbstractMojo
 {
 

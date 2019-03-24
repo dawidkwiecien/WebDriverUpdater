@@ -66,9 +66,6 @@ public class InitSource {
         if (filename == null) {
             return -1;
         }
-
-        // Check that no directory separator appears after the
-        // EXTENSION_SEPARATOR
         int extensionPos = filename.lastIndexOf(".");
 
         int lastDirSeparator = filename.lastIndexOf(System.getProperty("file.separator"));

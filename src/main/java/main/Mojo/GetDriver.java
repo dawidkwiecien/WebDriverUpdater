@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Mojo(name = "driverUpdate")
+@Mojo(name = "driverUpdate",requiresOnline = true)
 public class GetDriver extends AbstractMojo {
     @Parameter(property = "driverUpdate.browser")
     BrowserTypes browser;
