@@ -4,7 +4,7 @@ import main.download.FileDownloader;
 import main.initialize.InitSource;
 import main.unpack.UnzipFile;
 import main.utils.BrowserTypes;
-import main.utils.ChromeLinkToDrivers;
+import main.links.ChromeLinkToDrivers;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;

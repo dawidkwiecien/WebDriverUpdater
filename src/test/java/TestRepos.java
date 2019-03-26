@@ -1,5 +1,5 @@
 import main.initialize.InitSource;
-import main.utils.ChromeLinkToDrivers;
+import main.links.ChromeLinkToDrivers;
 import org.testng.annotations.Test;
 
 import javax.xml.bind.JAXBException;

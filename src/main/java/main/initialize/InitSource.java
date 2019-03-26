@@ -2,9 +2,9 @@ package main.initialize;
 
 import main.download.FileDownloader;
 import main.repos.DriverRepo;
-import main.utils.ChromeLinkToDrivers;
-import main.utils.TransformXmlToObject;
-import main.utils.chrome.jaxb.ChromeListBucketResult;
+import main.links.ChromeLinkToDrivers;
+import main.jaxb.TransformXmlToObject;
+import main.jaxb.chrome.ChromeListBucketResult;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;

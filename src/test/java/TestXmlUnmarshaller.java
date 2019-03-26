@@ -1,5 +1,5 @@
 import main.repos.DriverRepo;
-import main.utils.TransformXmlToObject;
+import main.jaxb.TransformXmlToObject;
 import org.testng.annotations.Test;
 
 import javax.xml.bind.JAXBException;

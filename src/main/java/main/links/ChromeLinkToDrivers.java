@@ -1,14 +1,11 @@
-package main.utils;
+package main.links;
 
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class ChromeLinkToDrivers {
-    String version;
-    String os;
-    String link;
+public class ChromeLinkToDrivers extends BaseLink {
 
     public ChromeLinkToDrivers(String conent, String link) {
         String[] splitedBySlash=conent.split("/");

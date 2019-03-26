@@ -1,4 +1,4 @@
-package main.utils.chrome.jaxb;
+package main.jaxb.chrome;
 
 import lombok.Data;
 
