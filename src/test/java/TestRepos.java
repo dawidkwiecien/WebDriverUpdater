@@ -8,7 +8,13 @@ import java.util.List;
 
 public class TestRepos {
     @Test
-    public void getRepo() throws IOException, JAXBException {
+    public void chrome() throws IOException, JAXBException {
+        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls","CHROME");
+        List<ChromeLinkToDrivers> links=source.getRepo();
+    }
+
+    @Test
+    public void firefox() throws IOException, JAXBException {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls","CHROME");
         List<ChromeLinkToDrivers> links=source.getRepo();
     }

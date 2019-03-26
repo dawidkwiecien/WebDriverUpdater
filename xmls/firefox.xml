@@ -1,0 +1,4 @@
+<repo>
+    <name>FIREFOX</name>
+    <url>https://api.github.com/repos/mozilla/geckodriver/releases</url>
+</repo>

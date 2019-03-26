@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static main.utils.ExtensionsOperations.removeExtension;
+
 public class InitSource {
     private final String path;
     private final String driverName;
@@ -47,34 +49,6 @@ public class InitSource {
         return linkToDrivers;
 
     }
-    private static String removeExtension(String filename) {
-        if (filename == null) {
-            return null;
-        }
 
-        int index = indexOfExtension(filename);
-
-        if (index == -1) {
-            return filename;
-        } else {
-            return filename.substring(0, index);
-        }
-    }
-
-    private static int indexOfExtension(String filename) {
-
-        if (filename == null) {
-            return -1;
-        }
-        int extensionPos = filename.lastIndexOf(".");
-
-        int lastDirSeparator = filename.lastIndexOf(System.getProperty("file.separator"));
-
-        if (lastDirSeparator > extensionPos) {
-            return -1;
-        }
-
-        return extensionPos;
-    }
 
 }

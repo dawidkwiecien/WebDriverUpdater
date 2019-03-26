@@ -1,5 +1,5 @@
 package main.utils;
 
 public enum BrowserTypes {
-    CHROME
+    CHROME,FIREFOX
 }
