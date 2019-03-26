@@ -41,14 +41,13 @@ public class FileDownloader {
         return in;
     }
 
-    private File getResultFile(URL url) {
-        File fileName = new File(url.getFile());
-        return new File(pathToSaveFile + System.getProperty("file.separator") + fileName.getName());
+    private File getResultFile() throws IOException {
+        return new File(pathToSaveFile + System.getProperty("file.separator"));
     }
 
-    private OutputStream getOutputStream(URL url) throws FileNotFoundException {
+    private OutputStream getOutputStream(URL url) throws IOException {
         OutputStream out;
-        result = getResultFile(url);
+        result = getResultFile();
         FileOutputStream fos = new FileOutputStream(result);
         out = new BufferedOutputStream(fos);
 
