@@ -1,6 +1,7 @@
 package main.Mojo;
 
 import main.initialize.InitSource;
+import main.links.BaseLink;
 import main.utils.BrowserTypes;
 import main.links.ChromeLinkToDrivers;
 import org.apache.maven.plugin.AbstractMojo;
@@ -20,8 +21,8 @@ public class DriverVersion extends AbstractMojo
     private BrowserTypes browser;
 
     public void execute() {
-        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",this.browser.name());
-        List<ChromeLinkToDrivers> links = new ArrayList<>();
+        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",this.browser);
+        List<BaseLink> links = new ArrayList<>();
         try {
             links=source.getRepo();
         } catch (IOException | JAXBException e) {

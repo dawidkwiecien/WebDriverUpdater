@@ -1,10 +1,12 @@
 package main.initialize;
 
 import main.download.FileDownloader;
+import main.links.BaseLink;
 import main.repos.DriverRepo;
 import main.links.ChromeLinkToDrivers;
 import main.jaxb.TransformXmlToObject;
 import main.jaxb.chrome.ChromeListBucketResult;
+import main.utils.BrowserTypes;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
@@ -20,34 +22,55 @@ import static main.utils.ExtensionsOperations.removeExtension;
 
 public class InitSource {
     private final String path;
-    private final String driverName;
+    private final BrowserTypes driverName;
 
-    public InitSource(String path,String driverName) {
+    public InitSource(String path,BrowserTypes driverName) {
         this.path = path;
         this.driverName = driverName;
     }
 
-    public List<ChromeLinkToDrivers> getRepo() throws IOException, JAXBException {
+    public List<BaseLink> getRepo() throws IOException, JAXBException {
 
-        List<File> filesInFolder = Files.walk(Paths.get(path))
-                .filter(Files::isRegularFile)
-                .filter(p-> removeExtension(p.toFile().getName()).equalsIgnoreCase(driverName))
-                .map(Path::toFile)
-                .collect(Collectors.toList());
-        File file=filesInFolder.stream().findFirst().get();
-        DriverRepo repo= (DriverRepo) TransformXmlToObject.transform(DriverRepo.class,file);
+
+        File repoFile=repoSourceXML();
+        DriverRepo repo= (DriverRepo) TransformXmlToObject.transform(DriverRepo.class,repoFile);
         String link=repo.getDriverLink();
         File temp=File.createTempFile("chromeRepos","xml");
         temp.deleteOnExit();
         FileDownloader fileDownloader = new FileDownloader(link,temp);
         File downloaded=fileDownloader.download();
+
         ChromeListBucketResult chrome= (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class,downloaded);
         chrome.setContents(chrome.getContents().stream().filter(p->p.getKey().endsWith(".zip")).collect(Collectors.toList()));
-        List<ChromeLinkToDrivers> linkToDrivers = new ArrayList<>();
+        List<Object> linkToDrivers = new ArrayList<>();
         chrome.getContents().forEach(p-> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(),link)));
 
-        return linkToDrivers;
+        switch (driverName) {
+            case CHROME:
+                return chromeLinks(link,downloaded);
+            case FIREFOX:
+                break;
+        }
+return null;
 
+    }
+
+    private File repoSourceXML() throws IOException {
+        List<File> filesInFolder = Files.walk(Paths.get(path))
+                .filter(Files::isRegularFile)
+                .filter(p-> removeExtension(p.toFile().getName()).equalsIgnoreCase(driverName.toString()))
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+        File file=filesInFolder.stream().findFirst().get();
+        return file;
+    }
+
+    private List<BaseLink> chromeLinks(String link, File downloaded) throws JAXBException {
+        ChromeListBucketResult chrome= (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class,downloaded);
+        chrome.setContents(chrome.getContents().stream().filter(p->p.getKey().endsWith(".zip")).collect(Collectors.toList()));
+        List<BaseLink> linkToDrivers = new ArrayList<>();
+        chrome.getContents().forEach(p-> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(),link)));
+        return linkToDrivers;
     }
 
 

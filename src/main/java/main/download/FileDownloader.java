@@ -3,7 +3,6 @@ package main.download;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 
 public class FileDownloader {
     private final String urlToDownload;

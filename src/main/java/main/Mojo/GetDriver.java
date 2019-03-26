@@ -2,6 +2,7 @@ package main.Mojo;
 
 import main.download.FileDownloader;
 import main.initialize.InitSource;
+import main.links.BaseLink;
 import main.unpack.UnzipFile;
 import main.utils.BrowserTypes;
 import main.links.ChromeLinkToDrivers;
@@ -32,14 +33,14 @@ public class GetDriver extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls", this.browser.name());
-        List<ChromeLinkToDrivers> links = new ArrayList<>();
+        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls", this.browser);
+        List<BaseLink> links = new ArrayList<>();
         try {
             links = source.getRepo();
         } catch (IOException | JAXBException e) {
             getLog().error(e);
         }
-        Optional<ChromeLinkToDrivers> driver = links.stream().filter(p ->
+        Optional<BaseLink> driver = links.stream().filter(p ->
                 p.getOs().equalsIgnoreCase(os)
                         &&
                         p.getVersion().equalsIgnoreCase(version)
