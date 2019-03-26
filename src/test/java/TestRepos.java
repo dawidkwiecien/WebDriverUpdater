@@ -12,12 +12,14 @@ public class TestRepos {
     public void chrome() throws IOException, JAXBException {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",CHROME);
         List<BaseLink> links=source.getRepo();
+        assert(links.size()>0);
     }
 
     @Test
-    public void firefox() throws IOException, JAXBException {
+    public void firefox() throws IOException {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",FIREFOX);
         List<BaseLink> links=source.getRepo();
+        assert(links.size()>0);
     }
 
 }

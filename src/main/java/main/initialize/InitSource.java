@@ -1,12 +1,14 @@
 package main.initialize;
 
 import main.download.FileDownloader;
-import main.links.BaseLink;
-import main.repos.DriverRepo;
-import main.links.ChromeLinkToDrivers;
 import main.jaxb.TransformXmlToObject;
 import main.jaxb.chrome.ChromeListBucketResult;
+import main.json.GetJsonObject;
+import main.links.BaseLink;
+import main.links.ChromeLinkToDrivers;
+import main.repos.DriverRepo;
 import main.utils.BrowserTypes;
+import org.json.simple.parser.ParseException;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
@@ -24,7 +26,7 @@ public class InitSource {
     private final String path;
     private final BrowserTypes driverName;
 
-    public InitSource(String path,BrowserTypes driverName) {
+    public InitSource(String path, BrowserTypes driverName) {
         this.path = path;
         this.driverName = driverName;
     }
@@ -32,40 +34,53 @@ public class InitSource {
     public List<BaseLink> getRepo() throws IOException, JAXBException {
 
 
-        File repoFile=repoSourceXML();
-        DriverRepo repo= (DriverRepo) TransformXmlToObject.transform(DriverRepo.class,repoFile);
-        String link=repo.getDriverLink();
-        File temp=File.createTempFile("chromeRepos","xml");
+        File repoFile = repoSourceXML();
+        DriverRepo repo = (DriverRepo) TransformXmlToObject.transform(DriverRepo.class, repoFile);
+        String link = repo.getDriverLink();
+        File temp = File.createTempFile("chromeRepos", "xml");
         temp.deleteOnExit();
 
-        FileDownloader fileDownloader = new FileDownloader(link,temp);
-        File downloaded=fileDownloader.download();
+        FileDownloader fileDownloader = new FileDownloader(link, temp);
+        File downloaded = fileDownloader.download();
 
         switch (driverName) {
             case CHROME:
-                return chromeLinks(link,downloaded);
+                return chromeLinks(link, downloaded);
             case FIREFOX:
-                break;
+                return firefoxLinks(link, downloaded);
+                default:return null;
         }
-return null;
 
     }
 
     private File repoSourceXML() throws IOException {
         List<File> filesInFolder = Files.walk(Paths.get(path))
                 .filter(Files::isRegularFile)
-                .filter(p-> removeExtension(p.toFile().getName()).equalsIgnoreCase(driverName.toString()))
+                .filter(p -> removeExtension(p.toFile().getName()).equalsIgnoreCase(driverName.toString()))
                 .map(Path::toFile)
                 .collect(Collectors.toList());
-        File file=filesInFolder.stream().findFirst().get();
+        File file = filesInFolder.stream().findFirst().get();
         return file;
     }
 
     private List<BaseLink> chromeLinks(String link, File downloaded) throws JAXBException {
-        ChromeListBucketResult chrome= (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class,downloaded);
-        chrome.setContents(chrome.getContents().stream().filter(p->p.getKey().endsWith(".zip")).collect(Collectors.toList()));
+        ChromeListBucketResult chrome = (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class, downloaded);
+        chrome.setContents(chrome.getContents().stream().filter(p -> p.getKey().endsWith(".zip")).collect(Collectors.toList()));
         List<BaseLink> linkToDrivers = new ArrayList<>();
-        chrome.getContents().forEach(p-> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(),link)));
+        chrome.getContents().forEach(p -> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(), link)));
+        return linkToDrivers;
+    }
+
+    private List<BaseLink> firefoxLinks(String link, File downloaded) {
+        GetJsonObject json = new GetJsonObject(downloaded);
+        List<BaseLink> linkToDrivers = new ArrayList<>();
+        try {
+            linkToDrivers = json.getObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return linkToDrivers;
     }
 
