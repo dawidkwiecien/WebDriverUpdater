@@ -41,11 +41,6 @@ public class InitSource {
         FileDownloader fileDownloader = new FileDownloader(link,temp);
         File downloaded=fileDownloader.download();
 
-        ChromeListBucketResult chrome= (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class,downloaded);
-        chrome.setContents(chrome.getContents().stream().filter(p->p.getKey().endsWith(".zip")).collect(Collectors.toList()));
-        List<Object> linkToDrivers = new ArrayList<>();
-        chrome.getContents().forEach(p-> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(),link)));
-
         switch (driverName) {
             case CHROME:
                 return chromeLinks(link,downloaded);
