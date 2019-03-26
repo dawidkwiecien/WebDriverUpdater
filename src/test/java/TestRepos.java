@@ -16,7 +16,7 @@ public class TestRepos {
     }
 
     @Test
-    public void firefox() throws IOException {
+    public void firefox() throws IOException, JAXBException {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",FIREFOX);
         List<BaseLink> links=source.getRepo();
         assert(links.size()>0);
