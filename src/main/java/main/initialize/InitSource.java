@@ -40,7 +40,7 @@ public class InitSource {
         File temp = File.createTempFile("chromeRepos", "xml");
         temp.deleteOnExit();
 
-        FileDownloader fileDownloader = new FileDownloader(link, temp);
+        FileDownloader fileDownloader = new FileDownloader(link, temp.toPath());
         File downloaded = fileDownloader.download();
 
         switch (driverName) {

@@ -6,7 +6,7 @@
 
     <groupId>WebDriverUpdater</groupId>
     <artifactId>WebDriverUpdater</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>maven-plugin</packaging>
     <name>WebDriverUpdater Maven Plugin</name>
 
@@ -46,7 +46,7 @@
                 <version>${project.version}</version>
                 <configuration>
                     <browser>FIREFOX</browser>
-                    <version>version=v0.24.0</version>
+                    <version>v0.24.0</version>
                     <os>win64</os>
                     <destinationPath>/home/dawid/IdeaProjects/WebDriverUpdater/download</destinationPath>
                 </configuration>
