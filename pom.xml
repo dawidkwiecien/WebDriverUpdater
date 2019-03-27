@@ -8,7 +8,7 @@
     <artifactId>WebDriverUpdater</artifactId>
     <version>1.1</version>
     <packaging>maven-plugin</packaging>
-    <name>Sample Parameter-less Maven Plugin</name>
+    <name>WebDriverUpdater Maven Plugin</name>
 
     <properties>
         <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
@@ -45,9 +45,9 @@
                 <artifactId>${project.artifactId}</artifactId>
                 <version>${project.version}</version>
                 <configuration>
-                    <browser>CHROME</browser>
-                    <version>74.0.3729.6</version>
-                    <os>win32</os>
+                    <browser>FIREFOX</browser>
+                    <version>version=v0.24.0</version>
+                    <os>win64</os>
                     <destinationPath>/home/dawid/IdeaProjects/WebDriverUpdater/download</destinationPath>
                 </configuration>
             </plugin>
@@ -88,6 +88,14 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.18</version>
+        </dependency>
+
+
 
 
     </dependencies>

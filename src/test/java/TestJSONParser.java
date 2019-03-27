@@ -8,13 +8,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class TestJSONParser {
-    @Test
+    @Test(enabled = false)
     public void testJSON() throws IOException, ParseException {
         File file = new File("/tmp/chromeRepos5823313387082634109xml");
         GetJsonObject json = new GetJsonObject(file);
         json.getObject();
-            System.out.println();
-
-
     }
 }

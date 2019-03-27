@@ -35,7 +35,6 @@ public class GetJsonObject {
                 mapa.add(new FirefoxLinkToDrivers((asset.get("browser_download_url").toString()),(asset.get("name").toString())));
             });
 
-            System.out.println();
         });
         return mapa;
     }

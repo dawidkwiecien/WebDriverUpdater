@@ -3,9 +3,8 @@ package main.Mojo;
 import main.download.FileDownloader;
 import main.initialize.InitSource;
 import main.links.BaseLink;
-import main.unpack.UnzipFile;
+import main.decompressFile.UnpackFile;
 import main.utils.BrowserTypes;
-import main.links.ChromeLinkToDrivers;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -62,12 +61,8 @@ public class GetDriver extends AbstractMojo {
         } catch (IOException e) {
             getLog().error(e);
         }
-        UnzipFile unzipFile = new UnzipFile(downloadedArchiver, new File(destinationPath));
-        try {
-            unzipFile.unzip();
-        } catch (IOException e) {
-            getLog().error(e);
-        }
+        UnpackFile unpackFile = new UnpackFile(downloadedArchiver, new File(destinationPath));
+        unpackFile.decompress();
     }
 
 }
