@@ -1,6 +1,5 @@
 package main.links;
 
-import main.utils.ExtensionsOperations;
 
 public class FirefoxLinkToDrivers extends BaseLink {
     public FirefoxLinkToDrivers(String link,String name) {

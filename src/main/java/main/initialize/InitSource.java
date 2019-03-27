@@ -37,10 +37,9 @@ public class InitSource {
         File repoFile = repoSourceXML();
         DriverRepo repo = (DriverRepo) TransformXmlToObject.transform(DriverRepo.class, repoFile);
         String link = repo.getDriverLink();
-        File temp = File.createTempFile("chromeRepos", "xml");
-        temp.deleteOnExit();
+        Path tempDirWithPrefix = Files.createTempDirectory("tmp");
 
-        FileDownloader fileDownloader = new FileDownloader(link, temp.toPath());
+        FileDownloader fileDownloader = new FileDownloader(link, tempDirWithPrefix, true);
         File downloaded = fileDownloader.download();
 
         switch (driverName) {
@@ -67,7 +66,10 @@ public class InitSource {
         ChromeListBucketResult chrome = (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class, downloaded);
         chrome.setContents(chrome.getContents().stream().filter(p -> p.getKey().endsWith(".zip")).collect(Collectors.toList()));
         List<BaseLink> linkToDrivers = new ArrayList<>();
-        chrome.getContents().forEach(p -> linkToDrivers.add(new ChromeLinkToDrivers(p.getKey(), link)));
+        chrome.getContents().forEach(p -> {
+            BaseLink baseLink = new ChromeLinkToDrivers(p.getKey(), link);
+            linkToDrivers.add(baseLink);
+        });
         return linkToDrivers;
     }
 

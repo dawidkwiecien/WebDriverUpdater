@@ -10,17 +10,21 @@ import java.nio.file.Path;
 public class FileDownloader {
     private final String urlToDownload;
     private final Path pathToSaveFile;
+    private final Boolean temporary;
     private File result;
 
-    public FileDownloader(String urlToDownload, Path pathToSaveFile) {
+    public FileDownloader(String urlToDownload, Path pathToSaveFile, Boolean temporary) {
         this.urlToDownload = urlToDownload;
         this.pathToSaveFile = pathToSaveFile;
+        this.temporary = temporary;
     }
 
     public File download() throws IOException {
         URL url = getURL();
 
-        InputStream in =  getInputStream(url);
+        result = getResultFile(url);
+
+        InputStream in = getInputStream(url);
 
         OutputStream out = getOutputStream(url);
 
@@ -46,12 +50,14 @@ public class FileDownloader {
     }
 
     private File getResultFile(URL url) throws IOException {
-        return new File(pathToSaveFile+System.getProperty("file.separator")+ FileUtils.filename(url.getFile()));
+        if (temporary)
+            return File.createTempFile("tmp", ".tmp", pathToSaveFile.toFile());
+        else
+            return new File(pathToSaveFile + System.getProperty("file.separator") + FileUtils.filename(url.getFile()));
     }
 
     private OutputStream getOutputStream(URL url) throws IOException {
         OutputStream out;
-        result = getResultFile(url);
         FileOutputStream fos = new FileOutputStream(result);
         out = new BufferedOutputStream(fos);
 

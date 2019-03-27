@@ -1,10 +1,6 @@
 package main.links;
 
-import lombok.Data;
-import lombok.ToString;
 
-@Data
-@ToString
 public class ChromeLinkToDrivers extends BaseLink {
 
     public ChromeLinkToDrivers(String conent, String link) {

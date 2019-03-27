@@ -44,7 +44,7 @@ public class UnpackFile {
                         // log something?
                         continue;
                     }
-                    String name = pathToUnzip.getPath() + entry;
+                    String name = pathToUnzip.getPath() +System.getProperty("file.separator")+ entry;
                     File f = new File(name);
                     if (entry.isDirectory()) {
                         if (!f.isDirectory() && !f.mkdirs()) {

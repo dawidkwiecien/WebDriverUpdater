@@ -3,7 +3,6 @@ package main.Mojo;
 import main.initialize.InitSource;
 import main.links.BaseLink;
 import main.utils.BrowserTypes;
-import main.links.ChromeLinkToDrivers;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;

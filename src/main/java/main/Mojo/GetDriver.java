@@ -14,7 +14,6 @@ import org.apache.maven.plugins.annotations.Parameter;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,12 +44,8 @@ public class GetDriver extends AbstractMojo {
                         p.getVersion().equalsIgnoreCase(version)
         ).findFirst();
         if (!driver.isPresent()) throw new IllegalArgumentException(browser.name() + " " + version + " " + os);
-        File tempFile = null;
-        tempFile = new File("test.txt");
 
-        //tempFile.deleteOnExit();
-
-        FileDownloader fileDownloader = new FileDownloader(driver.get().getLink(), tempFile.toPath());
+        FileDownloader fileDownloader = new FileDownloader(driver.get().getLink(), new File(destinationPath+"/").toPath(), false);
         File downloadedArchiver = null;
         try {
             downloadedArchiver = fileDownloader.download();
