@@ -16,6 +16,7 @@ public class FileDownloader {
     public FileDownloader(String urlToDownload, Path pathToSaveFile, Boolean temporary) {
         this.urlToDownload = urlToDownload;
         this.pathToSaveFile = pathToSaveFile;
+        pathToSaveFile.toFile().mkdirs();
         this.temporary = temporary;
     }
 
