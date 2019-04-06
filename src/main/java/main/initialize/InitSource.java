@@ -37,9 +37,9 @@ public class InitSource {
         File repoFile = repoSourceXML();
         DriverRepo repo = (DriverRepo) TransformXmlToObject.transform(DriverRepo.class, repoFile);
         String link = repo.getDriverLink();
-        Path tempDirWithPrefix = Files.createTempDirectory("tmp");
+//        Path tempDirWithPrefix = Files.createTempDirectory("tmp");
 
-        FileDownloader fileDownloader = new FileDownloader(link, tempDirWithPrefix, true);
+        FileDownloader fileDownloader = new FileDownloader(link);
         File downloaded = fileDownloader.download();
 
         switch (driverName) {

@@ -45,7 +45,7 @@ public class GetDriver extends AbstractMojo {
         ).findFirst();
         if (!driver.isPresent()) throw new IllegalArgumentException(browser.name() + " " + version + " " + os);
 
-        FileDownloader fileDownloader = new FileDownloader(driver.get().getLink(), new File(destinationPath+"/").toPath(), false);
+        FileDownloader fileDownloader = new FileDownloader(driver.get().getLink());
         File downloadedArchiver = null;
         try {
             downloadedArchiver = fileDownloader.download();

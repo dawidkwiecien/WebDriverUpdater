@@ -5,19 +5,13 @@ import org.codehaus.plexus.util.FileUtils;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 
 public class FileDownloader {
     private final String urlToDownload;
-    private final Path pathToSaveFile;
-    private final Boolean temporary;
     private File result;
 
-    public FileDownloader(String urlToDownload, Path pathToSaveFile, Boolean temporary) {
+    public FileDownloader(String urlToDownload) {
         this.urlToDownload = urlToDownload;
-        this.pathToSaveFile = pathToSaveFile;
-        pathToSaveFile.toFile().mkdirs();
-        this.temporary = temporary;
     }
 
     public File download() throws IOException {
@@ -51,10 +45,7 @@ public class FileDownloader {
     }
 
     private File getResultFile(URL url) throws IOException {
-        if (temporary)
-            return File.createTempFile("tmp", ".tmp", pathToSaveFile.toFile());
-        else
-            return new File(pathToSaveFile + System.getProperty("file.separator") + FileUtils.filename(url.getFile()));
+            return File.createTempFile("tmp", ".tmp");
     }
 
     private OutputStream getOutputStream(URL url) throws IOException {

@@ -11,7 +11,7 @@ public class TestFileDownload {
     public void testDownload() throws IOException {
         String url="https://chromedriver.storage.googleapis.com/73.0.3683.68/chromedriver_win32.zip";
         Path path= Paths.get("/home/dawid/IdeaProjects/WebDriverUpdater/download");
-        FileDownloader fileDownloader = new FileDownloader(url,path, false);
+        FileDownloader fileDownloader = new FileDownloader(url);
         File file=fileDownloader.download();
         assert(file != null);
     }
@@ -20,7 +20,7 @@ public class TestFileDownload {
     public void testDownload2() throws IOException {
         String url="https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux32.tar.gz";
         Path path= Paths.get("/home/dawid/IdeaProjects/WebDriverUpdater/download");
-        FileDownloader fileDownloader = new FileDownloader(url,path, false);
+        FileDownloader fileDownloader = new FileDownloader(url);
         File file=fileDownloader.download();
         assert(file != null);
     }
@@ -29,7 +29,7 @@ public class TestFileDownload {
     public void testDownload3() throws IOException {
         String url="https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux32.tar.gz";
         Path path= Paths.get("/home/dawid/IdeaProjects/WebDriverUpdater/download");
-        FileDownloader fileDownloader = new FileDownloader(url,path, true);
+        FileDownloader fileDownloader = new FileDownloader(url);
         File file=fileDownloader.download();
         assert(file != null);
     }
