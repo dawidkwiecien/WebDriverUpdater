@@ -13,6 +13,7 @@ import org.json.simple.parser.ParseException;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,13 +32,12 @@ public class InitSource {
         this.driverName = driverName;
     }
 
-    public List<BaseLink> getRepo() throws IOException, JAXBException {
+    public List<BaseLink> getRepo() throws IOException, JAXBException, URISyntaxException {
 
 
         File repoFile = repoSourceXML();
         DriverRepo repo = (DriverRepo) TransformXmlToObject.transform(DriverRepo.class, repoFile);
         String link = repo.getDriverLink();
-//        Path tempDirWithPrefix = Files.createTempDirectory("tmp");
 
         FileDownloader fileDownloader = new FileDownloader(link);
         File downloaded = fileDownloader.download();
@@ -58,8 +58,7 @@ public class InitSource {
                 .filter(p -> removeExtension(p.toFile().getName()).equalsIgnoreCase(driverName.toString()))
                 .map(Path::toFile)
                 .collect(Collectors.toList());
-        File file = filesInFolder.stream().findFirst().get();
-        return file;
+        return filesInFolder.stream().findFirst().get();
     }
 
     private List<BaseLink> chromeLinks(String link, File downloaded) throws JAXBException {
@@ -78,9 +77,7 @@ public class InitSource {
         List<BaseLink> linkToDrivers = new ArrayList<>();
         try {
             linkToDrivers = json.getObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return linkToDrivers;

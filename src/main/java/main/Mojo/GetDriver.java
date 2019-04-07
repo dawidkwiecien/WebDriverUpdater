@@ -14,6 +14,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,22 +22,28 @@ import java.util.Optional;
 @Mojo(name = "driverUpdate",requiresOnline = true)
 public class GetDriver extends AbstractMojo {
     @Parameter(property = "driverUpdate.browser")
+    private
     BrowserTypes browser;
     @Parameter(property = "driverUpdate.version")
+    private
     String version;
     @Parameter(property = "driverUpdate.os")
+    private
     String os;
     @Parameter(property = "driverUpdate.destinationPath")
+    private
     String destinationPath;
 
     @Override
-    public void execute() throws MojoExecutionException, MojoFailureException {
+    public void execute() {
         InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls", this.browser);
         List<BaseLink> links = new ArrayList<>();
         try {
             links = source.getRepo();
         } catch (IOException | JAXBException e) {
             getLog().error(e);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
         Optional<BaseLink> driver = links.stream().filter(p ->
                 p.getOs().equalsIgnoreCase(os)
@@ -51,6 +58,8 @@ public class GetDriver extends AbstractMojo {
             downloadedArchiver = fileDownloader.download();
         } catch (IOException e) {
             getLog().error(e);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
         UnpackFile unpackFile = new UnpackFile(downloadedArchiver, new File(destinationPath));
         unpackFile.decompress();

@@ -9,6 +9,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class DriverVersion extends AbstractMojo
             links=source.getRepo();
         } catch (IOException | JAXBException e) {
             getLog().error(e);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
         links.forEach(p-> getLog().info(p.toString()));
     }

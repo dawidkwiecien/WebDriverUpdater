@@ -1,9 +1,8 @@
 package main.download;
 
-import org.codehaus.plexus.util.FileUtils;
-
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class FileDownloader {
@@ -44,7 +43,7 @@ public class FileDownloader {
         return in;
     }
 
-    private File getResultFile(URL url) throws IOException {
+    private File getResultFile(URL url) throws IOException{
             return File.createTempFile("tmp", ".tmp");
     }
 

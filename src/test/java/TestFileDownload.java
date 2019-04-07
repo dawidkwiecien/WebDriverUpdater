@@ -3,32 +3,36 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 
 public class TestFileDownload {
-    @Test(enabled = true)
-    public void testDownload() throws IOException {
+    @Test()
+    public void testDownload() throws IOException, URISyntaxException {
         String url="https://chromedriver.storage.googleapis.com/73.0.3683.68/chromedriver_win32.zip";
-        Path path= Paths.get("/home/dawid/IdeaProjects/WebDriverUpdater/download");
         FileDownloader fileDownloader = new FileDownloader(url);
         File file=fileDownloader.download();
         assert(file != null);
     }
 
-    @Test(enabled = true)
-    public void testDownload2() throws IOException {
+    @Test()
+    public void testDownload2() throws IOException, URISyntaxException {
         String url="https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux32.tar.gz";
-        Path path= Paths.get("/home/dawid/IdeaProjects/WebDriverUpdater/download");
         FileDownloader fileDownloader = new FileDownloader(url);
         File file=fileDownloader.download();
         assert(file != null);
     }
 
-    @Test(enabled = true)
-    public void testDownload3() throws IOException {
-        String url="https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux32.tar.gz";
-        Path path= Paths.get("/home/dawid/IdeaProjects/WebDriverUpdater/download");
+    @Test()
+    public void testDownload3() throws IOException, URISyntaxException {
+        String url="https://chromedriver.storage.googleapis.com";
+        FileDownloader fileDownloader = new FileDownloader(url);
+        File file=fileDownloader.download();
+        assert(file != null);
+    }
+
+    @Test()
+    public void testDownload4() throws IOException, URISyntaxException {
+        String url="https://api.github.com/repos/mozilla/geckodriver/releases";
         FileDownloader fileDownloader = new FileDownloader(url);
         File file=fileDownloader.download();
         assert(file != null);
