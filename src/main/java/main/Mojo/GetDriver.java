@@ -58,8 +58,6 @@ public class GetDriver extends AbstractMojo {
             downloadedArchiver = fileDownloader.download();
         } catch (IOException e) {
             getLog().error(e);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
         UnpackFile unpackFile = new UnpackFile(downloadedArchiver, new File(destinationPath));
         unpackFile.decompress();

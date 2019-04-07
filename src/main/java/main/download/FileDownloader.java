@@ -2,8 +2,9 @@ package main.download;
 
 import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FileDownloader {
     private final String urlToDownload;
@@ -20,7 +21,7 @@ public class FileDownloader {
 
         InputStream in = getInputStream(url);
 
-        OutputStream out = getOutputStream(url);
+        OutputStream out = getOutputStream();
 
         procedDownload(in, out);
 
@@ -44,14 +45,24 @@ public class FileDownloader {
     }
 
     private File getResultFile(URL url) throws IOException{
-            return File.createTempFile("tmp", ".tmp");
+        Map<String,String> resultFileName = getFileName(url);
+        return File.createTempFile(resultFileName.get("prefix"), resultFileName.get("sufix"));
     }
 
-    private OutputStream getOutputStream(URL url) throws IOException {
+    private Map getFileName(URL url){
+        String fileName = url.getPath().substring(url.getPath().lastIndexOf('/')+1);
+        Map<String,String> resultFileName = new HashMap<>();
+        String prefix=fileName.lastIndexOf(".")!=-1?fileName.substring(0,fileName.lastIndexOf(".")):"tmp";
+        String sufix=fileName.lastIndexOf(".")!=-1?fileName.substring(fileName.lastIndexOf(".")):".tmp";
+        resultFileName.put("prefix",prefix);
+        resultFileName.put("sufix",sufix);
+        return resultFileName;
+    }
+
+    private OutputStream getOutputStream() throws IOException {
         OutputStream out;
         FileOutputStream fos = new FileOutputStream(result);
         out = new BufferedOutputStream(fos);
-
         return out;
     }
 
