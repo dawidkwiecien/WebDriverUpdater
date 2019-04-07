@@ -5,9 +5,9 @@ import java.io.File;
 
 public class TransformXmlToObject {
 
-    public static Object transform(Class clasa, File input) throws JAXBException {
+    public static <T> T transform(Class<T> clasa, File input) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(clasa);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        return (clasa.cast(jaxbUnmarshaller.unmarshal(input))) ;
+        return (T)jaxbUnmarshaller.unmarshal(input);
     }
 }
