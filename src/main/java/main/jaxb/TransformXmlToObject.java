@@ -5,9 +5,15 @@ import java.io.File;
 
 public class TransformXmlToObject {
 
-    public static <T> T transform(Class<T> clasa, File input) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clasa);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        return (T)jaxbUnmarshaller.unmarshal(input);
+    public static <T> T transform(Class<T> clasa, File input)  {
+        T result = null;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(clasa);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            result=(T)jaxbUnmarshaller.unmarshal(input);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

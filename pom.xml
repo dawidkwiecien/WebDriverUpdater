@@ -45,12 +45,12 @@
                 <artifactId>${project.artifactId}</artifactId>
                 <version>${project.version}</version>
                 <configuration>
-<!--                                        <browser>FIREFOX</browser>-->
-<!--                                        <version>v0.24.0</version>-->
-<!--                                        <os>win64</os>-->
-                    <browser>CHROME</browser>
-                    <version>74.0.3729.6</version>
-                    <os>win32</os>
+                                        <browser>FIREFOX</browser>
+                                        <version>v0.24.0</version>
+                                        <os>win64</os>
+<!--                    <browser>CHROME</browser>-->
+<!--                    <version>74.0.3729.6</version>-->
+<!--                    <os>win32</os>-->
                     <destinationPath>/home/dawid/IdeaProjects/WebDriverUpdater/download</destinationPath>
                 </configuration>
             </plugin>

@@ -6,15 +6,12 @@ import main.links.BaseLink;
 import main.decompressFile.UnpackFile;
 import main.utils.BrowserTypes;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,10 +37,8 @@ public class GetDriver extends AbstractMojo {
         List<BaseLink> links = new ArrayList<>();
         try {
             links = source.getRepo();
-        } catch (IOException | JAXBException e) {
+        } catch (IOException e) {
             getLog().error(e);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
         Optional<BaseLink> driver = links.stream().filter(p ->
                 p.getOs().equalsIgnoreCase(os)

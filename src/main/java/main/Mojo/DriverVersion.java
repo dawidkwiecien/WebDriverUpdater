@@ -7,9 +7,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +23,8 @@ public class DriverVersion extends AbstractMojo
         List<BaseLink> links = new ArrayList<>();
         try {
             links=source.getRepo();
-        } catch (IOException | JAXBException e) {
+        } catch (IOException e) {
             getLog().error(e);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
         links.forEach(p-> getLog().info(p.toString()));
     }

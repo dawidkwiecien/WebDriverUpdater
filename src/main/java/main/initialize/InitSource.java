@@ -1,23 +1,18 @@
 package main.initialize;
 
 import main.download.FileDownloader;
+import main.initialize.browser.ChromeSource;
+import main.initialize.browser.FirefoxSource;
 import main.jaxb.TransformXmlToObject;
-import main.jaxb.chrome.ChromeListBucketResult;
-import main.json.GetJsonObject;
 import main.links.BaseLink;
-import main.links.ChromeLinkToDrivers;
 import main.repos.DriverRepo;
 import main.utils.BrowserTypes;
-import org.json.simple.parser.ParseException;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,23 +27,28 @@ public class InitSource {
         this.driverName = driverName;
     }
 
-    public List<BaseLink> getRepo() throws IOException, JAXBException, URISyntaxException {
-
-
+    public List<BaseLink> getRepo() throws IOException {
         File repoFile = repoSourceXML();
-        DriverRepo repo = (DriverRepo) TransformXmlToObject.transform(DriverRepo.class, repoFile);
+        DriverRepo repo = TransformXmlToObject.transform(DriverRepo.class, repoFile);
         String link = repo.getDriverLink();
 
         FileDownloader fileDownloader = new FileDownloader(link);
         File downloaded = fileDownloader.download();
+        BrowserSource browserSource;
+
 
         switch (driverName) {
             case CHROME:
-                return chromeLinks(link, downloaded);
+                browserSource = new ChromeSource();
+                break;
             case FIREFOX:
-                return firefoxLinks(link, downloaded);
-                default:return null;
+                browserSource = new FirefoxSource();
+                break;
+            default:
+                return null;
         }
+
+        return browserSource.getLinks(link, downloaded);
 
     }
 
@@ -59,28 +59,6 @@ public class InitSource {
                 .map(Path::toFile)
                 .collect(Collectors.toList());
         return filesInFolder.stream().findFirst().get();
-    }
-
-    private List<BaseLink> chromeLinks(String link, File downloaded) throws JAXBException {
-        ChromeListBucketResult chrome = (ChromeListBucketResult) TransformXmlToObject.transform(ChromeListBucketResult.class, downloaded);
-        chrome.setContents(chrome.getContents().stream().filter(p -> p.getKey().endsWith(".zip")).collect(Collectors.toList()));
-        List<BaseLink> linkToDrivers = new ArrayList<>();
-        chrome.getContents().forEach(p -> {
-            BaseLink baseLink = new ChromeLinkToDrivers(p.getKey(), link);
-            linkToDrivers.add(baseLink);
-        });
-        return linkToDrivers;
-    }
-
-    private List<BaseLink> firefoxLinks(String link, File downloaded) {
-        GetJsonObject json = new GetJsonObject(downloaded);
-        List<BaseLink> linkToDrivers = new ArrayList<>();
-        try {
-            linkToDrivers = json.getObject();
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-        return linkToDrivers;
     }
 
 
