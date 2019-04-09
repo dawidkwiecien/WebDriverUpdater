@@ -14,7 +14,7 @@ public class FileDownloader {
         this.urlToDownload = urlToDownload;
     }
 
-    public File download() throws IOException {
+    public File download()  {
         URL url = getURL();
 
         result = getResultFile(url);
@@ -30,23 +30,36 @@ public class FileDownloader {
         return result;
     }
 
-    private URL getURL() throws MalformedURLException {
-        URL url;
-        url = new URL(urlToDownload);
+    private URL getURL() {
+        URL url=null;
+        try {
+            url = new URL(urlToDownload);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         return url;
     }
 
-    private InputStream getInputStream(URL url) throws IOException {
-        InputStream in;
-        in = url.openStream();
+    private InputStream getInputStream(URL url) {
+        InputStream in=null;
+        try {
+            in = url.openStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return in;
     }
 
-    private File getResultFile(URL url) throws IOException{
+    private File getResultFile(URL url) {
         Map<String,String> resultFileName = getFileName(url);
-        return File.createTempFile(resultFileName.get("prefix"), resultFileName.get("sufix"));
+        try {
+            return File.createTempFile(resultFileName.get("prefix"), resultFileName.get("sufix"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private Map getFileName(URL url){
@@ -59,21 +72,39 @@ public class FileDownloader {
         return resultFileName;
     }
 
-    private OutputStream getOutputStream() throws IOException {
+    private OutputStream getOutputStream()  {
         OutputStream out;
-        FileOutputStream fos = new FileOutputStream(result);
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(result);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         out = new BufferedOutputStream(fos);
         return out;
     }
 
-    private void procedDownload(InputStream in, OutputStream out) throws IOException {
-        for (int b; (b = in.read()) != -1; ) {
-            out.write(b);
+    private void procedDownload(InputStream in, OutputStream out)  {
+        try {
+            for (int b; (b = in.read()) != -1; ) {
+                out.write(b);
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
 
-    private void closeConnection(InputStream in, OutputStream out) throws IOException {
-        out.close();
-        in.close();
+    private void closeConnection(InputStream in, OutputStream out)  {
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

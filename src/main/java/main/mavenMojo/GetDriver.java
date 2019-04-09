@@ -7,9 +7,7 @@ import main.utils.BrowserTypes;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,12 +29,7 @@ class GetDriver extends AbstractMojo {
         BaseLink driver=getDriver(links);
 
         FileDownloader fileDownloader = new FileDownloader(driver.getLink());
-        File downloadedArchiver = null;
-        try {
-            downloadedArchiver = fileDownloader.download();
-        } catch (IOException e) {
-            getLog().error(e);
-        }
+        File downloadedArchiver = fileDownloader.download();
         UnpackFile unpackFile = new UnpackFile(downloadedArchiver, new File(destinationPath));
         unpackFile.decompress();
     }
