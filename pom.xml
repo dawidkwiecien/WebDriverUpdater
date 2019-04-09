@@ -45,9 +45,12 @@
                 <artifactId>${project.artifactId}</artifactId>
                 <version>${project.version}</version>
                 <configuration>
-                                        <browser>OPERA</browser>
-                                        <version>v0.24.0</version>
-                                        <os>win32</os>
+<!--                        <browser>OPERA</browser>-->
+<!--                        <version>v.2.42</version>-->
+<!--                        <os>linux64</os>-->
+                        <browser>FIREFOX</browser>
+                        <version>v0.24.0</version>
+                        <os>linux64</os>
 <!--                    <browser>CHROME</browser>-->
 <!--                    <version>74.0.3729.6</version>-->
 <!--                    <os>win32</os>-->
