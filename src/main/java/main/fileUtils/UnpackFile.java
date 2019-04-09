@@ -1,10 +1,14 @@
 package main.fileUtils;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveException;
 import org.apache.commons.compress.archivers.ArchiveInputStream;
-import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
+import org.apache.commons.compress.compressors.FileNameUtil;
+import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.*;
 import java.nio.file.Files;
 
@@ -26,13 +30,11 @@ public class UnpackFile {
         }
 
         ArchiveInputStream input = null;
-        try {
-            assert fileInputStream != null;
-            input = new ArchiveStreamFactory()
-                    .createArchiveInputStream(fileInputStream);
-        } catch (ArchiveException e) {
-            e.printStackTrace();
-        }
+        assert fileInputStream != null;
+//            input = new ArchiveStreamFactory()
+//                    .createArchiveInputStream(fileInputStream);
+        input = getArchiveInputStream(fileInputStream);
+
         return input;
     }
 
@@ -45,7 +47,7 @@ public class UnpackFile {
                         // log something?
                         continue;
                     }
-                    String name = pathToUnzip.getPath() +System.getProperty("file.separator")+ entry;
+                    String name = pathToUnzip.getPath() + System.getProperty("file.separator") + entry.getName();
                     File f = new File(name);
                     if (entry.isDirectory()) {
                         if (!f.isDirectory() && !f.mkdirs()) {
@@ -65,5 +67,20 @@ public class UnpackFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private ArchiveInputStream getArchiveInputStream(InputStream fileInputStream) {
+        switch (FilenameUtils.getExtension(fileToUnzip.getName())) {
+            case "gz":
+                try {
+                    return new TarArchiveInputStream(new GzipCompressorInputStream(fileInputStream));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            case "zip":
+                return new ZipArchiveInputStream(fileInputStream);
+                default:return null;
+        }
+
     }
 }
