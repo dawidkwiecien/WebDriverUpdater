@@ -1,14 +1,11 @@
 package main.initialize;
 
 import main.fileUtils.FileDownloader;
-import main.initialize.processLinkFromSource.process.ChromeSource;
-import main.initialize.processLinkFromSource.process.FirefoxSource;
 import main.initialize.processLinkFromSource.process.interfaces.BrowserSource;
 import main.utils.TransformXmlToObject;
 import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 import main.initialize.localRepo.DriverRepo;
 import main.utils.BrowserTypes;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -35,19 +32,7 @@ public class InitSource {
 
         FileDownloader fileDownloader = new FileDownloader(link);
         File downloaded = fileDownloader.download();
-        BrowserSource browserSource;
-
-
-        switch (driverName) {
-            case CHROME:
-                browserSource = new ChromeSource();
-                break;
-            case FIREFOX:
-                browserSource = new FirefoxSource();
-                break;
-            default:
-                return null;
-        }
+        BrowserSource browserSource=driverName.getBrowserSource();
 
         return browserSource.getLinks(link, downloaded);
 

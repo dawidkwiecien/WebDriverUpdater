@@ -25,9 +25,7 @@ public class TransformFileToJsonArray {
         JSONParser parser = new JSONParser();
         try {
             return  (JSONArray) parser.parse(fileReader);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
 

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class TestJSONParser {
     @Test(enabled = false)
-    public void testJSON() throws IOException, ParseException {
+    public void testJSON() {
         File file = new File("/tmp/chromeRepos5823313387082634109xml");
         TransformFileToJsonArray json = new TransformFileToJsonArray(file);
         json.getArray();
