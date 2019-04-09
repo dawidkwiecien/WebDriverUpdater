@@ -1,11 +1,9 @@
 
 
-import main.utils.TransformFileToJsonArray;
-import org.json.simple.parser.ParseException;
+import main.initialize.sourceUtils.TransformFileToJsonArray;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.IOException;
 
 public class TestJSONParser {
     @Test(enabled = false)

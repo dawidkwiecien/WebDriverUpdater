@@ -1,7 +1,6 @@
 package main.mavenMojo;
 
 import main.fileUtils.FileDownloader;
-import main.initialize.InitSource;
 import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 import main.fileUtils.UnpackFile;
 import main.utils.BrowserTypes;

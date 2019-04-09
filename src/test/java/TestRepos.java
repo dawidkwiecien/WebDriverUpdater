@@ -1,7 +1,7 @@
 import main.initialize.InitSource;
 import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 import org.testng.annotations.Test;
-import javax.xml.bind.JAXBException;
+
 import java.io.IOException;
 import java.util.List;
 

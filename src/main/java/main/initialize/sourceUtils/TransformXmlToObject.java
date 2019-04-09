@@ -1,10 +1,11 @@
-package main.utils;
+package main.initialize.sourceUtils;
 
 import javax.xml.bind.*;
 import java.io.File;
 
 public class TransformXmlToObject {
 
+    @SuppressWarnings("unchecked")
     public static <T> T transform(Class<T> clasa, File input)  {
         T result = null;
         try {

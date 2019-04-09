@@ -1,7 +1,7 @@
 package main.initialize.processLinkFromSource.process;
 
 import main.initialize.processLinkFromSource.process.interfaces.BrowserSource;
-import main.utils.TransformXmlToObject;
+import main.initialize.sourceUtils.TransformXmlToObject;
 import main.initialize.results.ChromeListBucketResult;
 import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 import main.initialize.processLinkFromSource.resultClasses.ChromeLinkToDrivers;

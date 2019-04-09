@@ -1,4 +1,4 @@
-package main.utils;
+package main.initialize.sourceUtils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;

@@ -2,7 +2,7 @@ package main.initialize.processLinkFromSource.process;
 
 import main.initialize.processLinkFromSource.process.interfaces.BrowserSource;
 import main.initialize.processLinkFromSource.resultClasses.FirefoxLinkToDrivers;
-import main.utils.TransformFileToJsonArray;
+import main.initialize.sourceUtils.TransformFileToJsonArray;
 import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

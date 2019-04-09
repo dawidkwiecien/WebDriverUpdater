@@ -27,6 +27,7 @@ public class UnpackFile {
 
         ArchiveInputStream input = null;
         try {
+            assert fileInputStream != null;
             input = new ArchiveStreamFactory()
                     .createArchiveInputStream(fileInputStream);
         } catch (ArchiveException e) {
