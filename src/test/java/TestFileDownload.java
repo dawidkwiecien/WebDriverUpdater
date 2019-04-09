@@ -36,4 +36,12 @@ public class TestFileDownload {
         File file=fileDownloader.download();
         assert(file != null);
     }
+
+    @Test()
+    public void testDownload5() throws IOException{
+        String url="https://api.github.com/repos/operasoftware/operachromiumdriver/releases";
+        FileDownloader fileDownloader = new FileDownloader(url);
+        File file=fileDownloader.download();
+        assert(file != null);
+    }
 }

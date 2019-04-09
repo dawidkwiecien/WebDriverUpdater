@@ -1,12 +1,12 @@
 package main.utils;
 
-import main.initialize.processLinkFromSource.process.ChromeSource;
-import main.initialize.processLinkFromSource.process.FirefoxSource;
+import main.initialize.processLinkFromSource.process.*;
 import main.initialize.processLinkFromSource.process.interfaces.BrowserSource;
 
 public enum BrowserTypes {
     CHROME(new ChromeSource()),
-    FIREFOX(new FirefoxSource());
+    FIREFOX(new FirefoxSource()),
+    OPERA(new OperaSource());
 
     private final BrowserSource browserSource;
 

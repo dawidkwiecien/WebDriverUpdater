@@ -22,4 +22,11 @@ public class TestRepos {
         assert(links.size()>0);
     }
 
+    @Test()
+    public void opera() throws IOException {
+        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",OPERA);
+        List<BaseLink> links=source.getRepo();
+        assert(links.size()>0);
+    }
+
 }
