@@ -1,7 +1,7 @@
-package main.Mojo;
+package main.mavenMojo;
 
 import main.initialize.InitSource;
-import main.links.BaseLink;
+import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 import main.utils.BrowserTypes;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -15,7 +15,7 @@ import java.util.List;
 public class DriverVersion extends AbstractMojo
 {
 
-    @Parameter( property = "driverVersions.browser" )
+    @Parameter( property = "driverVersions.source" )
     private BrowserTypes browser;
 
     public void execute() {

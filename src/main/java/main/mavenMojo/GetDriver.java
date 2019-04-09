@@ -1,15 +1,14 @@
-package main.Mojo;
+package main.mavenMojo;
 
-import main.download.FileDownloader;
+import main.fileUtils.FileDownloader;
 import main.initialize.InitSource;
-import main.links.BaseLink;
-import main.decompressFile.UnpackFile;
+import main.initialize.processLinkFromSource.resultClasses.BaseLink;
+import main.fileUtils.UnpackFile;
 import main.utils.BrowserTypes;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import java.util.Optional;
 
 @Mojo(name = "driverUpdate",requiresOnline = true)
 public class GetDriver extends AbstractMojo {
-    @Parameter(property = "driverUpdate.browser")
+    @Parameter(property = "driverUpdate.source")
     private
     BrowserTypes browser;
     @Parameter(property = "driverUpdate.version")

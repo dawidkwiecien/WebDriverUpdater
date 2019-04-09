@@ -1,4 +1,4 @@
-import main.decompressFile.UnpackFile;
+import main.fileUtils.UnpackFile;
 import org.testng.annotations.Test;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package main.jaxb;
+package main.utils;
 
 import javax.xml.bind.*;
 import java.io.File;

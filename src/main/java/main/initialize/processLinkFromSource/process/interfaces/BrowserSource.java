@@ -1,6 +1,6 @@
-package main.initialize;
+package main.initialize.processLinkFromSource.process.interfaces;
 
-import main.links.BaseLink;
+import main.initialize.processLinkFromSource.resultClasses.BaseLink;
 
 import java.io.File;
 import java.util.List;

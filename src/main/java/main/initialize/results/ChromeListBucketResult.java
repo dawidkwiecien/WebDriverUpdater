@@ -1,4 +1,4 @@
-package main.jaxb.chrome;
+package main.initialize.results;
 
 import lombok.Data;
 

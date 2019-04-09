@@ -1,4 +1,4 @@
-import main.download.FileDownloader;
+import main.fileUtils.FileDownloader;
 import org.testng.annotations.Test;
 
 import java.io.File;

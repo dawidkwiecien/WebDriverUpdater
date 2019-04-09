@@ -1,4 +1,4 @@
-package main.links;
+package main.initialize.processLinkFromSource.resultClasses;
 
 
 public class FirefoxLinkToDrivers extends BaseLink {

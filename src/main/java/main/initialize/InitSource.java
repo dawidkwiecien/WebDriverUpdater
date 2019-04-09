@@ -1,11 +1,12 @@
 package main.initialize;
 
-import main.download.FileDownloader;
-import main.initialize.browser.ChromeSource;
-import main.initialize.browser.FirefoxSource;
-import main.jaxb.TransformXmlToObject;
-import main.links.BaseLink;
-import main.repos.DriverRepo;
+import main.fileUtils.FileDownloader;
+import main.initialize.processLinkFromSource.process.ChromeSource;
+import main.initialize.processLinkFromSource.process.FirefoxSource;
+import main.initialize.processLinkFromSource.process.interfaces.BrowserSource;
+import main.utils.TransformXmlToObject;
+import main.initialize.processLinkFromSource.resultClasses.BaseLink;
+import main.initialize.localRepo.DriverRepo;
 import main.utils.BrowserTypes;
 
 import java.io.File;

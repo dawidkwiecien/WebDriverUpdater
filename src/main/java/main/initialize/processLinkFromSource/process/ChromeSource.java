@@ -1,10 +1,10 @@
-package main.initialize.browser;
+package main.initialize.processLinkFromSource.process;
 
-import main.initialize.BrowserSource;
-import main.jaxb.TransformXmlToObject;
-import main.jaxb.chrome.ChromeListBucketResult;
-import main.links.BaseLink;
-import main.links.ChromeLinkToDrivers;
+import main.initialize.processLinkFromSource.process.interfaces.BrowserSource;
+import main.utils.TransformXmlToObject;
+import main.initialize.results.ChromeListBucketResult;
+import main.initialize.processLinkFromSource.resultClasses.BaseLink;
+import main.initialize.processLinkFromSource.resultClasses.ChromeLinkToDrivers;
 
 import java.io.File;
 import java.util.ArrayList;

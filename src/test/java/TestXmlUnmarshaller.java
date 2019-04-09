@@ -1,5 +1,5 @@
-import main.repos.DriverRepo;
-import main.jaxb.TransformXmlToObject;
+import main.initialize.localRepo.DriverRepo;
+import main.utils.TransformXmlToObject;
 import org.testng.annotations.Test;
 
 import java.io.File;

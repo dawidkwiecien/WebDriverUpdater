@@ -1,4 +1,4 @@
-package main.decompressFile;
+package main.fileUtils;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ArchiveException;

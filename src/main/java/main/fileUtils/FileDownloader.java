@@ -1,4 +1,4 @@
-package main.download;
+package main.fileUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;

@@ -1,4 +1,4 @@
-package main.repos;
+package main.initialize.localRepo;
 
 import lombok.*;
 import javax.xml.bind.annotation.XmlAccessType;

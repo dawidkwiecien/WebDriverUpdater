@@ -48,7 +48,7 @@
                                         <browser>FIREFOX</browser>
                                         <version>v0.24.0</version>
                                         <os>win64</os>
-<!--                    <browser>CHROME</browser>-->
+<!--                    <source>CHROME</source>-->
 <!--                    <version>74.0.3729.6</version>-->
 <!--                    <os>win32</os>-->
                     <destinationPath>/home/dawid/IdeaProjects/WebDriverUpdater/download</destinationPath>
