@@ -4,7 +4,6 @@ import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ArchiveInputStream;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
-import org.apache.commons.compress.compressors.FileNameUtil;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -29,7 +28,7 @@ public class UnpackFile {
             e.printStackTrace();
         }
 
-        ArchiveInputStream input = null;
+        ArchiveInputStream input;
         assert fileInputStream != null;
 //            input = new ArchiveStreamFactory()
 //                    .createArchiveInputStream(fileInputStream);

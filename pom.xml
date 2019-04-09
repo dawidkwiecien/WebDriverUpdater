@@ -69,8 +69,6 @@
             <version>${maven-plugin-plugin.version}</version>
         </dependency>
 
-
-        <!-- dependencies to annotations -->
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
@@ -90,6 +88,7 @@
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
         </dependency>
+
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
@@ -101,11 +100,25 @@
             <artifactId>commons-compress</artifactId>
             <version>1.18</version>
         </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate</groupId>-->
+<!--            <artifactId>hibernate-validator</artifactId>-->
+<!--            <version>6.0.16.Final</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.glassfish</groupId>-->
+<!--            <artifactId>javax.el</artifactId>-->
+<!--            <version>3.0.1-b09</version>-->
+<!--        </dependency>-->
+
 
 
     </dependencies>

@@ -6,7 +6,7 @@ import java.io.File;
 
 public class TestJSONParser {
 
-    @Test(enabled = true)
+    @Test()
     public void testJSON() {
         File file = new File("src/test/resources/releases.json");
         TransformFileToJsonArray json = new TransformFileToJsonArray(file);

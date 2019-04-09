@@ -7,6 +7,7 @@ import main.utils.BrowserTypes;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -14,13 +15,13 @@ import java.util.Optional;
 
 @Mojo(name = "driverUpdate",requiresOnline = true)
 class GetDriver extends AbstractMojo {
-    @Parameter(property = "driverUpdate.source")
+    @Parameter(property = "driverUpdate.source",required = true,readonly = true)
     private BrowserTypes browser;
-    @Parameter(property = "driverUpdate.version")
+    @Parameter(property = "driverUpdate.version",required = true,readonly = true)
     private String version;
-    @Parameter(property = "driverUpdate.os")
+    @Parameter(property = "driverUpdate.os",required = true,readonly = true)
     private String os;
-    @Parameter(property = "driverUpdate.destinationPath")
+    @Parameter(property = "driverUpdate.destinationPath",required = true,readonly = true)
     private String destinationPath;
 
     @Override
