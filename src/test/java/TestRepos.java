@@ -10,21 +10,21 @@ import static main.utils.BrowserTypes.*;
 public class TestRepos {
     @Test
     public void chrome() throws IOException {
-        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",CHROME);
+        InitSource source = new InitSource("xmls",CHROME);
         List<BaseLink> links=source.getRepo();
         assert(links.size()>0);
     }
 
     @Test()
     public void firefox() throws IOException {
-        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",FIREFOX);
+        InitSource source = new InitSource("xmls",FIREFOX);
         List<BaseLink> links=source.getRepo();
         assert(links.size()>0);
     }
 
     @Test()
     public void opera() throws IOException {
-        InitSource source = new InitSource("/home/dawid/IdeaProjects/WebDriverUpdater/xmls",OPERA);
+        InitSource source = new InitSource("xmls",OPERA);
         List<BaseLink> links=source.getRepo();
         assert(links.size()>0);
     }

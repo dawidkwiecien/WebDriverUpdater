@@ -5,7 +5,7 @@ import java.io.File;
 
 public class TestUnpackFile {
 
-    private final File destination = new File("/home/dawid/IdeaProjects/WebDriverUpdater/download");
+    private final File destination = new File("download");
 
     @Test
     public void unzipFile() {

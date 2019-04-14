@@ -9,7 +9,7 @@ public class TestXmlUnmarshaller {
     @Test
     public void testUnmarshallChrome() {
         Class klasa = DriverRepo.class;
-        File plik=new File("/home/dawid/IdeaProjects/WebDriverUpdater/xmls/chrome.xml");
+        File plik=new File("xmls/chrome.xml");
         DriverRepo repo= (DriverRepo) TransformXmlToObject.transform(klasa,plik);
         assert (repo != null);
         assert(repo.getDriverLink().equalsIgnoreCase(("https://chromedriver.storage.googleapis.com/")));
@@ -19,7 +19,7 @@ public class TestXmlUnmarshaller {
     @Test
     public void testUnmarshallFirefox() {
         Class klasa = DriverRepo.class;
-        File plik=new File("/home/dawid/IdeaProjects/WebDriverUpdater/xmls/firefox.xml");
+        File plik=new File("xmls/firefox.xml");
         DriverRepo repo= (DriverRepo) TransformXmlToObject.transform(klasa,plik);
         assert (repo != null);
         assert(repo.getDriverLink().equalsIgnoreCase(("https://api.github.com/repos/mozilla/geckodriver/releases")));
